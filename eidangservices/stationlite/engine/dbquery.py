@@ -21,7 +21,7 @@ def resolve_vnetwork(session, stream_epoch, like_escape='/'):
     """
     Resolve a stream epoch regarding virtual networks.
 
-    :returns: List of :py:class:`eidangservices.utils.sncl.StreamEpoch` object
+    :returns: List of :py:class:`~eidangservices.utils.sncl.StreamEpochs` object
         instances.
     :rtype: list
     """
@@ -154,8 +154,8 @@ def find_streamepochs_and_routes(session, stream_epoch, service,
     routes = collections.defaultdict(StreamEpochsHandler)
 
     for row in query.all():
-        # print('Query response: {0!r}'.format(row))
-        # NOTE(damb): Adjust epoch in case the ChannelEpoch is smaller than the
+        # print('Query response: {!r}'.format(row))
+        # NOTE(damb): Adjust epoch in case the ChannelEpoch is shorter than the
         # RoutingEpoch (regarding time constraints).
         starttime = max(row[2], row[6])
         endtime = row[3] if ((row[7] is None and row[3] is not None) or
